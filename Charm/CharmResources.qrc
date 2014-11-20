@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/Charm">
+    <qresource prefix="/">
         <file alias="bill.jpg">bill.jpg</file>
         <file alias="configure.png">Icons/configure.png</file>
         <file alias="report_stylesheet.sty">Widgets/report_stylesheet.sty</file>
@@ -23,5 +23,14 @@
     </qresource>
     <qresource prefix="/Qocoa">
         <file alias="qsearchfield_nonmac.png">Qocoa/qsearchfield_nonmac.png</file>
+    </qresource>
+    <qresource prefix="/Icons/android">
+        <file>Icons/android/stopButton.svg</file>
+        <file>Icons/android/plusButton.svg</file>
+        <file>Icons/android/playButton.svg</file>
+        <file>Icons/android/menuButton.svg</file>
+        <file>Icons/android/homeButton.svg</file>
+        <file>Icons/android/databaseButton.svg</file>
+        <file>Icons/android/calendarButton.svg</file>
     </qresource>
 </RCC>

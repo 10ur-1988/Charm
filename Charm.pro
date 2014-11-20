@@ -7,7 +7,7 @@ INCLUDEPATH += Charm/
 
 TARGET = AndCharm
 TEMPLATE = app
-RESOURCES = Charm/CharmResources.qrc QtQuickControls/qml.qrc
+RESOURCES = Charm/CharmResources.qrc 
 
 DEFINES += 'CHARM_VERSION=\'\"0.1a\"\''
 DEFINES += 'CHARM_IDLE_TIME=0'
@@ -15,6 +15,7 @@ DEFINES += QT_NO_DBUS QT_NO_PRINTER
 
 SOURCES += $$files(Core/*.cpp)
 SOURCES += \
+    Charm/main.cpp \
     Charm/Application.cpp \
     Charm/ApplicationFactory.cpp \
     Charm/Data.cpp \
