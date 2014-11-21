@@ -1,6 +1,6 @@
-!android: error("Building Charm with QMake is not supported, and used only for Qt/Android experiments. For everything else, please use the CMake build system.")
+#!android: error("Building Charm with QMake is not supported, and used only for Qt/Android experiments. For everything else, please use the CMake build system.")
 
-QT += core gui xml sql network widgets qml quick
+QT += core gui xml sql network widgets qml quick sensors xml svg #dbus
 
 INCLUDEPATH += Core/
 INCLUDEPATH += Charm/
@@ -12,6 +12,7 @@ RESOURCES = Charm/CharmResources.qrc
 DEFINES += 'CHARM_VERSION=\'\"0.1a\"\''
 DEFINES += 'CHARM_IDLE_TIME=0'
 DEFINES += QT_NO_DBUS QT_NO_PRINTER
+#DEFINES += QT_NO_PRINTER
 
 SOURCES += $$files(Core/*.cpp)
 SOURCES += \
@@ -83,8 +84,6 @@ SOURCES += \
 SOURCES += \
     Charm/Keychain/keychain.cpp \
     Charm/Keychain/keychain_unsecure.cpp
-
-SOURCES += $$files(QtQuickControls/*.cpp)
 
 HEADERS += $$files(Core/*.h)
 
@@ -196,5 +195,7 @@ system('echo "" > "$${OUT_PWD}/CharmCMake.h"')
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
-OTHER_FILES += \
-    android/AndroidManifest.xml
+OTHER_FILES += \asta am vazut deja
+    android/AndroidManifest.xml \
+    $$files(Charm/qml/*.qml)
+

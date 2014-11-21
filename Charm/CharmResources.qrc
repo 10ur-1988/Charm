@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file alias="bill.jpg">bill.jpg</file>
+        <file alias="bill.jpg">Icons/bill.jpg</file>
         <file alias="configure.png">Icons/configure.png</file>
         <file alias="report_stylesheet.sty">Widgets/report_stylesheet.sty</file>
         <file alias="active.png">Icons/arrow-right.png</file>
@@ -32,5 +32,11 @@
         <file>Icons/android/homeButton.svg</file>
         <file>Icons/android/databaseButton.svg</file>
         <file>Icons/android/calendarButton.svg</file>
+    </qresource>
+   <qresource prefix="/qml">
+        <file>qml/MainScreen.qml</file>
+	<file>qml/Screen.qml</file>
+	<file>qml/SettingScreen.qml</file>
+	<file>qml/TimeTracker.qml</file>
     </qresource>
 </RCC>
