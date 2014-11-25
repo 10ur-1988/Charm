@@ -34,9 +34,9 @@
         <file>Icons/android/calendarButton.svg</file>
     </qresource>
    <qresource prefix="/qml">
-        <file>qml/MainScreen.qml</file>
-	<file>qml/Screen.qml</file>
-	<file>qml/SettingScreen.qml</file>
-	<file>qml/TimeTracker.qml</file>
+        <file alias="MainScreen.qml">qml/MainScreen.qml</file>
+        <file alias="Screen.qml">qml/Screen.qml</file>
+        <file alias="SettingScreen.qml">qml/SettingScreen.qml</file>
+        <file alias="TimeTracker.qml">qml/TimeTracker.qml</file>
     </qresource>
 </RCC>

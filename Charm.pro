@@ -195,7 +195,7 @@ system('echo "" > "$${OUT_PWD}/CharmCMake.h"')
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
-OTHER_FILES += \asta am vazut deja
+OTHER_FILES += \
     android/AndroidManifest.xml \
     $$files(Charm/qml/*.qml)
 
