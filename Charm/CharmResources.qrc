@@ -32,6 +32,7 @@
         <file>Icons/android/homeButton.svg</file>
         <file>Icons/android/databaseButton.svg</file>
         <file>Icons/android/calendarButton.svg</file>
+        <file>qml/CharmStyle.qml</file>
     </qresource>
    <qresource prefix="/qml">
         <file alias="MainScreen.qml">qml/MainScreen.qml</file>

@@ -2,7 +2,7 @@ import QtQuick 2.2
 import QtQuick.Controls 1.1
 
 Screen {
-    color: SystemPalette.window
+    color: CharmStyle.window
 
     Rectangle {
         id: listViewArea
@@ -36,7 +36,7 @@ Screen {
         width: parent.width
         height: parent.height-listViewArea.height
         anchors.top: listViewArea.bottom
-        color: SystemPalette.button
+        color: CharmStyle.button
     }
 
     Image {

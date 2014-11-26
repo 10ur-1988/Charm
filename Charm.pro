@@ -192,7 +192,8 @@ OTHER_FILES += \
     Charm/Commands/CommandSetAllTasks.h \
     Charm/Commands/CommandRelayCommand.h \
     Charm/Commands/CommandDeleteEvent.h \
-    Charm/Commands/CommandMakeEvent.h
+    Charm/Commands/CommandMakeEvent.h \
+    Charm/qml/CharmStyle.qml
 
 CONFIG += mobility
 MOBILITY =
