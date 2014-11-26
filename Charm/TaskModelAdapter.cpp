@@ -1,5 +1,7 @@
 #include <QPixmap>
+#ifdef FIXME_LATER
 #include <QApplication>
+#endif
 #include <QPalette>
 
 #include "Data.h"
@@ -47,18 +49,25 @@ QVariant TaskModelAdapter::data( const QModelIndex& index, int role ) const
     const TaskId id = item->task().id();
     const Event& activeEvent = m_dataModel->activeEventFor( id );
     const bool isActive = activeEvent.isValid();
+#ifdef FIXME_LATER
+    // FIXME: we encapsulate this style handling with a separate class for platform independence
     const QApplication* application = static_cast<QApplication*>( QApplication::instance() );
     Q_ASSERT( application ); // we assume this code is executed in a GUI app
+#endif // FIXME_LATER
 
     // handle roles that are treated all the same, everywhere:
     switch( role ) {
     // problem: foreground role is never queried for
     case Qt::ForegroundRole:
+#ifdef FIXME_LATER
         if( item->task().isCurrentlyValid() ) {
             return application->palette().color( QPalette::Active, QPalette::Text );
         } else {
             return application->palette().color( QPalette::Disabled, QPalette::Text );
         }
+#else
+        return QColor();
+#endif // FIXME_LATER
         break;
     case Qt::BackgroundRole:
         if( item->task().isCurrentlyValid() ) {
@@ -70,7 +79,11 @@ QVariant TaskModelAdapter::data( const QModelIndex& index, int role ) const
         }
         break;
     case Qt::DisplayRole:
+#ifdef FIXME_LATER
         return DATAMODEL->taskIdAndNameString( item->task().id() );
+#else
+        return QString();
+#endif // FIXME_LATER
     case Qt::DecorationRole:
         if ( isActive ) {
             return Data::activePixmap();
@@ -95,7 +108,11 @@ QVariant TaskModelAdapter::data( const QModelIndex& index, int role ) const
     case TasksViewRole_Comment:
         return activeEvent.comment();
     case TasksViewRole_Filter:
+#ifdef FIXME_LATER
         return DATAMODEL->taskIdAndFullNameString( item->task().id() );
+#else
+        return QString();
+#endif // FIXME_LATER
     default:
         return QVariant();
     }
@@ -171,14 +188,18 @@ bool TaskModelAdapter::setData( const QModelIndex & index, const QVariant & valu
         QString comment = value.toString();
         Event event( old );
         event.setComment( comment );
+#ifdef FIXME_ME_FOR_SURE
         CommandModifyEvent* command = new CommandModifyEvent( event, old, this );
         VIEW.sendCommand( command );
+#endif
         return true;
     } else if ( role == Qt::CheckStateRole ) {
         task.setSubscribed( ! task.subscribed() );
+#ifdef FIXME_ME_FOR_SURE
         CommandModifyTask* command = new CommandModifyTask( task, this );
         VIEW.sendCommand( command );
         return true;
+#endif
     }
     return false;
 }

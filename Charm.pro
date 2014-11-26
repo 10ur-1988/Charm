@@ -1,33 +1,107 @@
 #!android: error("Building Charm with QMake is not supported, and used only for Qt/Android experiments. For everything else, please use the CMake build system.")
 
-QT += core gui xml sql network widgets qml quick sensors xml svg #dbus
+QT += core gui xml sql network qml quick sensors xml #dbus
 
 INCLUDEPATH += Core/
 INCLUDEPATH += Charm/
 
 TARGET = AndCharm
 TEMPLATE = app
-RESOURCES = Charm/CharmResources.qrc 
+RESOURCES = Charm/CharmResources.qrc
 
 DEFINES += 'CHARM_VERSION=\'\"0.1a\"\''
 DEFINES += 'CHARM_IDLE_TIME=0'
 DEFINES += QT_NO_DBUS QT_NO_PRINTER
 #DEFINES += QT_NO_PRINTER
 
-SOURCES += $$files(Core/*.cpp)
 SOURCES += \
     Charm/main.cpp \
-    Charm/Application.cpp \
-    Charm/ApplicationFactory.cpp \
     Charm/Data.cpp \
     Charm/EventModelAdapter.cpp \
     Charm/EventModelFilter.cpp \
-    Charm/GUIState.cpp \
-    Charm/ModelConnector.cpp \
     Charm/TaskModelAdapter.cpp \
     Charm/ViewFilter.cpp \
-    Charm/ViewHelpers.cpp \
     Charm/WeeklySummary.cpp \
+    Charm/Idle/IdleDetector.cpp \
+    Core/CharmCommand.cpp \
+    Core/CharmConstants.cpp \
+    Core/CharmDataModel.cpp \
+    Core/CharmExceptions.cpp \
+    Core/Configuration.cpp \
+    Core/Controller.cpp \
+    Core/Dates.cpp \
+    Core/Event.cpp \
+    Core/SmartNameCache.cpp \
+    Core/SqLiteStorage.cpp \
+    Core/SqlRaiiTransactor.cpp \
+    Core/SqlStorage.cpp \
+    Core/State.cpp \
+    Core/Task.cpp \
+    Core/TaskListMerger.cpp \
+    Core/TaskTreeItem.cpp \
+    Core/TimeSpans.cpp \
+    Core/XmlSerialization.cpp
+
+HEADERS += \
+    Charm/MakeTemporarilyVisible.h \
+    Charm/EventModelAdapter.h \
+    Charm/EventModelFilter.h \
+    Charm/Idle/IdleDetector.h \
+    Charm/Uniquifier.h \
+    Charm/ViewModeInterface.h \
+    Charm/GUIState.h \
+    Charm/UndoCharmCommandWrapper.h \
+    Charm/ViewFilter.h \
+    Charm/ApplicationFactory.h \
+    Charm/WeeklySummary.h \
+    Charm/TaskModelAdapter.h \
+    Charm/Data.h \
+    Core/CharmCommand.h \
+    Core/CharmConstants.h \
+    Core/CharmDataModelAdapterInterface.h \
+    Core/CharmDataModel.h \
+    Core/CharmExceptions.h \
+    Core/CommandEmitterInterface.h \
+    Core/Configuration.h \
+    Core/Controller.h \
+    Core/ControllerInterface.h \
+    Core/Dates.h \
+    Core/Event.h \
+    Core/EventModelInterface.h \
+    Core/Installation.h \
+    Core/MySqlStorage.h \
+    Core/SmartNameCache.h \
+    Core/SqLiteStorage.h \
+    Core/SqlRaiiTransactor.h \
+    Core/SqlStorage.h \
+    Core/State.h \
+    Core/StorageInterface.h \
+    Core/Task.h \
+    Core/TaskListMerger.h \
+    Core/TaskModelInterface.h \
+    Core/TaskTreeItem.h \
+    Core/TimeSpans.h \
+    Core/User.h \
+    Core/ViewInterface.h \
+    Core/XmlSerialization.h
+
+OTHER_FILES += \
+    Charm/HttpClient/HttpJob.cpp \
+    Charm/HttpClient/GetProjectCodesJob.cpp \
+    Charm/HttpClient/UploadTimesheetJob.cpp \
+    Charm/HttpClient/GetProjectCodesJob.h \
+    Charm/HttpClient/UploadTimesheetJob.h \
+    Charm/HttpClient/HttpJob.h \
+    Charm/ViewHelpers.cpp \
+    Charm/ViewHelpers.h \
+    Charm/Application.cpp \
+    Charm/Application.h \
+    Charm/ModelConnector.cpp \
+    Charm/ModelConnector.h \
+    Charm/Keychain/keychain.h \
+    Charm/Keychain/keychain_p.h \
+    Charm/Keychain/keychain.cpp \
+    Charm/Keychain/keychain_unsecure.cpp \
     Charm/UndoCharmCommandWrapper.cpp \
     Charm/Commands/CommandRelayCommand.cpp \
     Charm/Commands/CommandModifyEvent.cpp \
@@ -40,10 +114,10 @@ SOURCES += \
     Charm/Commands/CommandExportToXml.cpp \
     Charm/Commands/CommandImportFromXml.cpp \
     Charm/Commands/CommandMakeAndActivateEvent.cpp \
-    Charm/HttpClient/HttpJob.cpp \
-    Charm/HttpClient/GetProjectCodesJob.cpp \
-    Charm/HttpClient/UploadTimesheetJob.cpp \
-    Charm/Idle/IdleDetector.cpp \
+    Charm/Qocoa/qbutton.h \
+    Charm/Qocoa/qsearchfield.h \
+    Charm/ApplicationFactory.cpp \
+    Charm/GUIState.cpp \
     Charm/Widgets/ActivityReport.cpp \
     Charm/Widgets/BillDialog.cpp \
     Charm/Widgets/CharmPreferences.cpp \
@@ -76,27 +150,6 @@ SOURCES += \
     Charm/Widgets/TrayIcon.cpp \
     Charm/Widgets/Timesheet.cpp \
     Charm/Widgets/WeeklyTimesheet.cpp \
-
-SOURCES += \
-    Charm/Qocoa/qbutton_nonmac.cpp \
-    Charm/Qocoa/qsearchfield_nonmac.cpp
-
-SOURCES += \
-    Charm/Keychain/keychain.cpp \
-    Charm/Keychain/keychain_unsecure.cpp
-
-HEADERS += $$files(Core/*.h)
-
-HEADERS += \
-    Charm/MakeTemporarilyVisible.h \
-    Charm/EventModelAdapter.h \
-    Charm/EventModelFilter.h \
-    Charm/Idle/IdleDetector.h \
-    Charm/Uniquifier.h \
-    Charm/ViewModeInterface.h \
-    Charm/GUIState.h \
-    Charm/UndoCharmCommandWrapper.h \
-    Charm/ViewFilter.h \
     Charm/Widgets/TasksViewDelegate.h \
     Charm/Widgets/IdleCorrectionDialog.h \
     Charm/Widgets/Timesheet.h \
@@ -129,9 +182,6 @@ HEADERS += \
     Charm/Widgets/ReportPreviewWindow.h \
     Charm/Widgets/BillDialog.h \
     Charm/Widgets/CharmAboutDialog.h \
-    Charm/ApplicationFactory.h \
-    Charm/Qocoa/qbutton.h \
-    Charm/Qocoa/qsearchfield.h \
     Charm/Commands/CommandImportFromXml.h \
     Charm/Commands/CommandModifyTask.h \
     Charm/Commands/CommandAddTask.h \
@@ -142,20 +192,7 @@ HEADERS += \
     Charm/Commands/CommandSetAllTasks.h \
     Charm/Commands/CommandRelayCommand.h \
     Charm/Commands/CommandDeleteEvent.h \
-    Charm/Commands/CommandMakeEvent.h \
-    Charm/ViewHelpers.h \
-    Charm/ModelConnector.h \
-    Charm/WeeklySummary.h \
-    Charm/HttpClient/GetProjectCodesJob.h \
-    Charm/HttpClient/UploadTimesheetJob.h \
-    Charm/HttpClient/HttpJob.h \
-    Charm/Application.h \
-    Charm/Keychain/keychain.h \
-    Charm/Keychain/keychain_p.h \
-    Charm/TaskModelAdapter.h \
-    Charm/Data.h \
-
-FORMS += $$files(Charm/Widgets/*.ui)
+    Charm/Commands/CommandMakeEvent.h
 
 CONFIG += mobility
 MOBILITY =

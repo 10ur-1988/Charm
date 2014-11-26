@@ -1,7 +1,9 @@
 #include "CommandEmitterInterface.h"
 #include "CharmCommand.h"
 
+#ifdef FIXME_LATER
 #include <QMessageBox>
+#endif
 
 CharmCommand::CharmCommand( const QString& description, QObject *parent )
     : QObject( parent ),
@@ -46,6 +48,7 @@ void CharmCommand::requestSlotEventIdChanged(int oldId, int newId)
     emit emitSlotEventIdChanged(oldId,newId);
 }
 
+#ifdef FIXME_LATER
 void CharmCommand::showInformation(const QString& title, const QString& message)
 {
     QWidget* parent = dynamic_cast<QWidget*>( owner() );
@@ -59,5 +62,6 @@ void CharmCommand::showCritical(const QString& title, const QString& message)
     Q_ASSERT( parent );
     QMessageBox::critical( parent, title, message );
 }
+#endif // FIXME_LATER
 
 #include "moc_CharmCommand.cpp"
