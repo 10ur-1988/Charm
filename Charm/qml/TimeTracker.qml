@@ -15,34 +15,20 @@ Screen {
             ListView {
                 id: listView;
                 anchors.fill: parent;
-                model: listViewModel;
-                delegate: listViewDelegate;
-            }
-        }
-
-        Component {
-            id: listViewDelegate;
-            Rectangle {
-                anchors { left: parent.left; right: parent.right; }
-                height: listView.height / (listViewModel.count-2);
-                color: model.color;
-                Text {
-                    anchors.centerIn: parent;
-                    text: model.color;
+                model: _events;
+                delegate: Rectangle {
+                    anchors { left: parent.left; right: parent.right; }
+                    height: listView.height/8;
+                    color: model.color;
+                    Text {
+                        anchors.centerIn: parent;
+                        text: model.display;
+                    }
                 }
             }
         }
+    }
 
-        ListModel {
-            id: listViewModel;
-            ListElement { color: "red"; }
-            ListElement { color: "orange"; }
-            ListElement { color: "yellow"; }
-            ListElement { color: "green"; }
-            ListElement { color: "deepskyblue"; }
-            ListElement { color: "blue"; }
-            ListElement { color: "blueviolet"; }
-        }
     }
 
     Rectangle{

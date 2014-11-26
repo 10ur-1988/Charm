@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QSettings>
 
 #include "CharmConstants.h"
@@ -41,8 +42,13 @@ public:
             return EXIT_FAILURE;
         }
 
+        QQmlApplicationEngine engine;
         EventModelAdapter events(&m_dataModel);
-        QQmlApplicationEngine engine(QUrl("qrc:///qml/MainScreen.qml"));
+        m_dataModel.registerAdapter(&events);
+        engine.rootContext()->setContextProperty("_events", &events);
+        engine.load(QUrl("qrc:///qml/MainScreen.qml"));
+
+        m_controller.updateModelEventsAndTasks();
 
         return exec();
     }
