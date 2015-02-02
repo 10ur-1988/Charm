@@ -19,8 +19,6 @@ SOURCES += \
     Charm/Data.cpp \
     Charm/EventModelAdapter.cpp \
     Charm/EventModelFilter.cpp \
-    Charm/TaskModelAdapter.cpp \
-    Charm/ViewFilter.cpp \
     Charm/WeeklySummary.cpp \
     Charm/Idle/IdleDetector.cpp \
     Core/CharmCommand.cpp \
@@ -40,7 +38,8 @@ SOURCES += \
     Core/TaskListMerger.cpp \
     Core/TaskTreeItem.cpp \
     Core/TimeSpans.cpp \
-    Core/XmlSerialization.cpp
+    Core/XmlSerialization.cpp \
+    Charm/mobilecharmcontroller.cpp
 
 HEADERS += \
     Charm/MakeTemporarilyVisible.h \
@@ -51,10 +50,8 @@ HEADERS += \
     Charm/ViewModeInterface.h \
     Charm/GUIState.h \
     Charm/UndoCharmCommandWrapper.h \
-    Charm/ViewFilter.h \
     Charm/ApplicationFactory.h \
     Charm/WeeklySummary.h \
-    Charm/TaskModelAdapter.h \
     Charm/Data.h \
     Core/CharmCommand.h \
     Core/CharmConstants.h \
@@ -83,9 +80,14 @@ HEADERS += \
     Core/TimeSpans.h \
     Core/User.h \
     Core/ViewInterface.h \
-    Core/XmlSerialization.h
+    Core/XmlSerialization.h \
+    Charm/mobilecharmcontroller.h
 
 OTHER_FILES += \
+    Charm/ViewFilter.h \
+    Charm/ViewFilter.cpp \
+    Charm/TaskModelAdapter.h \
+    Charm/TaskModelAdapter.cpp \
     Charm/HttpClient/HttpJob.cpp \
     Charm/HttpClient/GetProjectCodesJob.cpp \
     Charm/HttpClient/UploadTimesheetJob.cpp \

@@ -3,6 +3,7 @@ import QtQuick.Controls 1.1
 import QtQuick.Window 2.0
 
 import QtSensors 5.0
+import QtSensors 5.2
 
 ApplicationWindow {
     id: mainWindow
@@ -11,7 +12,7 @@ ApplicationWindow {
     visible: true
     title: qsTr("Charm Time Tracker")
 
-    property var durationSpeed: 200
+    property var durationSpeed: 750
 
     Item {
         id: screenManager
@@ -35,5 +36,17 @@ ApplicationWindow {
 
             visible: x !== mainWindow.width
         }
+
+        /*
+        Button {
+            text: test
+            onClicked: _controller.doSomething("World")
+        }
+
+        Connections {
+            target: _controller
+            onDidSomething: console.log(what);
+        }
+        */
     }
 }

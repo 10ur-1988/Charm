@@ -20,13 +20,26 @@ int EventModelAdapter::rowCount( const QModelIndex& ) const
     return m_events.size();
 }
 
+
+QHash<int, QByteArray> EventModelAdapter::roleNames() const
+{
+    QHash<int, QByteArray> roleNames;
+    roleNames.insert(DisplayRole, "display");
+    roleNames.insert(TaskIdRole, "taskId");
+    roleNames.insert(TaskNameRole, "taskName");
+    return roleNames;
+}
+
 QVariant EventModelAdapter::data( const QModelIndex& index, int role ) const
 {
     if ( !index.isValid() || index.row() < 0 || index.row() > m_events.size() )
         return QVariant(); // beware of stale persistent indexes
 
-    switch ( role ) {
-    case Qt::DisplayRole:
+    EventId eventId = m_events[index.row()];
+    const Event& event = m_dataModel->eventForId( eventId );
+
+    switch ( static_cast<Roles>(role) ) {
+    case DisplayRole:
     {
         EventId eventId = m_events[index.row()];
         const Event& event = m_dataModel->eventForId( eventId );
@@ -39,9 +52,12 @@ QVariant EventModelAdapter::data( const QModelIndex& index, int role ) const
     }
     break;
 
-    default:
-        return QVariant();
+    case TaskIdRole:
+        return event.taskId();
+    case TaskNameRole:
+        return m_dataModel->smartTaskName( m_dataModel->getTask( event.taskId() ) );
     }
+    return QVariant();
 }
 
 void EventModelAdapter::resetEvents()

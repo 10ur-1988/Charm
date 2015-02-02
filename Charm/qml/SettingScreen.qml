@@ -5,7 +5,8 @@ Screen {
     color: SystemPalette.window
 
     Image {
-        source: "homeButton.svg"
+        id : homeButton
+        source: "qrc:///Icons/android/homeButton.svg"
         sourceSize.height: parent.height/15
         sourceSize.width: sourceSize.height
         x: (parent.width-width)/2
@@ -18,7 +19,7 @@ Screen {
 
     Image {
         id : databaseButton
-        source: "databaseButton.svg"
+        source: "qrc:///Icons/android/databaseButton.svg"
         sourceSize.width: parent.width/4
         MouseArea {
            anchors.fill: parent
@@ -26,7 +27,8 @@ Screen {
         }
     }
     Image {
-        source: "calendarButton.svg"
+        id : calendarButton
+        source: "qrc:///Icons/android/calendarButton.svg"
         anchors.left: databaseButton.right
         sourceSize.width: parent.width/4
         MouseArea {

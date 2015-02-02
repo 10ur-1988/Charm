@@ -20,6 +20,11 @@
         <file alias="charmtray22.png">Icons/tray/charmtray22.png</file>
         <file alias="charmtrayactive22.png">Icons/tray/charmtrayactive22.png</file>
         <file alias="createreport.png">Icons/document-export.png</file>
+    </qresource>
+    <qresource prefix="/Qocoa">
+        <file alias="qsearchfield_nonmac.png">Qocoa/qsearchfield_nonmac.png</file>
+    </qresource>
+    <qresource prefix="/Icons/android">
         <file>Icons/android/stopButton.svg</file>
         <file>Icons/android/plusButton.svg</file>
         <file>Icons/android/playButton.svg</file>
@@ -27,12 +32,8 @@
         <file>Icons/android/homeButton.svg</file>
         <file>Icons/android/databaseButton.svg</file>
         <file>Icons/android/calendarButton.svg</file>
-        <file>qml/CharmStyle.qml</file>
     </qresource>
-    <qresource prefix="/Qocoa">
-        <file alias="qsearchfield_nonmac.png">Qocoa/qsearchfield_nonmac.png</file>
-    </qresource>
-    <qresource prefix="/qml">
+   <qresource prefix="/qml">
         <file alias="MainScreen.qml">qml/MainScreen.qml</file>
         <file alias="Screen.qml">qml/Screen.qml</file>
         <file alias="SettingScreen.qml">qml/SettingScreen.qml</file>

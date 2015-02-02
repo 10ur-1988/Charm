@@ -18,12 +18,19 @@ class EventModelAdapter : public QAbstractListModel,
     Q_OBJECT
 
 public:
+    enum Roles {
+        DisplayRole = Qt::DisplayRole,
+        TaskIdRole = Qt::UserRole + 1,
+        TaskNameRole
+    };
+
     explicit EventModelAdapter( CharmDataModel* parent );
     virtual ~EventModelAdapter();
 
     int rowCount( const QModelIndex& parent = QModelIndex() ) const;
 
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
+    QHash<int, QByteArray> roleNames() const;
 
     // reimplement CharmDataModelAdapterInterface:
     void resetTasks() {}

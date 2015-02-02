@@ -1,12 +1,14 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QQmlComponent>
 #include <QSettings>
 
 #include "CharmConstants.h"
 #include "CharmDataModel.h"
 #include "Controller.h"
 #include "EventModelAdapter.h"
+#include "mobilecharmcontroller.h"
 
 class Application : public QGuiApplication
 {
@@ -42,10 +44,28 @@ public:
             return EXIT_FAILURE;
         }
 
+        /*
+        C++
+        qmlRegisterType<MobileCharmController>("Charm", 1, 0, "Controller");
+        QML:
+        import Charm 1.0
+        ...
+        Controller {
+           id: controller
+           .... controller.doSomething("Hello");
+        }
+        ...
+        */
+
         QQmlApplicationEngine engine;
+
         EventModelAdapter events(&m_dataModel);
         m_dataModel.registerAdapter(&events);
         engine.rootContext()->setContextProperty("_events", &events);
+
+        MobileCharmController controller; // (&m_dataModel);
+        engine.rootContext()->setContextProperty("_controller", &controller);
+
         engine.load(QUrl("qrc:///qml/MainScreen.qml"));
 
         m_controller.updateModelEventsAndTasks();
